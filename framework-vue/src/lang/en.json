@@ -1,0 +1,22 @@
+
+{
+  "common": {
+    "select_lang": "Language"
+  },
+  "language": "English",
+  "login": {
+    "title": "Sign in company",
+    "buttons": {
+      "login": "Login"
+    },
+    "input_text": {
+      "email": "Email Address",
+      "password": "Password"
+    },
+    "messages": {
+      "rememberMe": "Remember Me" ,
+      "none_account": "Create new a account",
+      "register": "Register"
+    }
+  }
+}
