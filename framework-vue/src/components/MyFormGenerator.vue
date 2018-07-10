@@ -3,7 +3,7 @@
     <h1 class="text-center">Demo of vue-form-generator</h1>
   <div class="container">
     <div class="panel panel-default">
-      <div class="panel-heading">Form</div>
+      <div class="panel-heading">Form - <a href="https://github.com/vue-generators/vue-form-generator/blob/master/src/utils/validators.js#L22">Validator.js</a></div>
       <div class="panel-body">
         <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
       </div>
@@ -34,7 +34,6 @@ export default {
   components: {
     "vue-form-generator": VueFormGenerator.component
   },
-
   data() {
     return {
       model: {
@@ -45,7 +44,7 @@ export default {
         skills: ["Javascript", "VueJS"],
         email: "john.doe@gmail.com",
         status: true,
-        created: "I'm very handsome!",
+        created: "- I'm very handsome!",
         friend: ""
       },
       schema: {
@@ -69,7 +68,12 @@ export default {
             required: true,
             disabled: false,
             placeholder: "User's name",
-            validator: VueFormGenerator.validators.string
+            min: 6,
+            validator: VueFormGenerator.validators.string.locale({
+              fieldIsRequired: "Nhập tên đi",
+              textTooSmall: "Tên phải ít nhất {0}/{1} ký tự" 
+              // {0} là current character, {1} là min
+            })
           },
           {
             type: "input",
@@ -79,7 +83,18 @@ export default {
             min: 6,
             required: true,
             hint: "Minimum 6 characters",
-            validator: VueFormGenerator.validators.string
+            validator: VueFormGenerator.validators.string.locale({
+              fieldIsRequired: "Password không được để trống"
+            }),
+            onValidated: function(model, errors, field) {
+              if (this.model.password.length > 20) {
+                errors.push("Password quá dài");
+              }
+              return errors;
+            },
+             onChanged: function(model) {
+               console.log(model.password);
+             }
           },
           {
             type: "input",
@@ -87,7 +102,9 @@ export default {
             label: "Age",
             model: "age",
             min: 18,
-            validator: VueFormGenerator.validators.number
+            validator: VueFormGenerator.validators.number.locale({
+              numberTooSmall: "Tuổi phải trên {0} tuổi"
+            })
           },
           {
             type: "input",
@@ -95,7 +112,9 @@ export default {
             label: "E-mail",
             model: "email",
             placeholder: "User's e-mail address",
-            validator: VueFormGenerator.validators.email
+            validator: VueFormGenerator.validators.email.locale({
+              invalidEmail: "Email chưa chuẩn"
+            })
           },
           {
             type: "checklist",

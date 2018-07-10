@@ -11,7 +11,6 @@ import MyFileBase64 from './components/MyFileBase64'
 import MyVueTab from './components/MyVueTab'
 import MyFullLoading from './components/MyFullLoading'
 import MyFormWizard from './components/MyFormWizard'
-import MyVueOnsen from './components/MyVueOnsen'
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -57,12 +56,7 @@ const router = new VueRouter({
       path: '/formwizard',
       name: 'formwizard',
       component: MyFormWizard
-    },
-    {
-      path: '/onsenui',
-      name: 'onsenui',
-      component: MyVueOnsen
-    },
+    }
   ]
 });
 
