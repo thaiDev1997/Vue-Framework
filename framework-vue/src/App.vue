@@ -15,7 +15,6 @@
       <li><router-link to="/vuetab">Vue Tab</router-link></li>
       <li><router-link to="/fullloading">Vue Loading</router-link></li>
       <li><router-link to="/formwizard">Vue Form-Wizard</router-link></li>
-      <li><router-link to="/onsenui">Vue Onsen UI</router-link></li>
     </ul>
   </div>
     </nav>
