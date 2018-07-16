@@ -28,6 +28,8 @@
 
 <script>
 import VueFormGenerator from "vue-form-generator";
+// import VueMultiselect from "vue-multiselect"; 
+// Can not import VueMultiSelect by NPM, have to use import by external in index.html
 
 export default {
   name: "MyFormGenerator",
@@ -42,6 +44,12 @@ export default {
         password: "J0hnD03!x4",
         age: 35,
         skills: ["Javascript", "VueJS"],
+        ingredient : [
+          {
+                uuid: "39f05038-39ba-4cb9-8508-720806dcb20b",
+                name: "Jabuticaba"
+          }
+        ],
         email: "john.doe@gmail.com",
         status: true,
         created: "- I'm very handsome!",
@@ -71,7 +79,7 @@ export default {
             min: 6,
             validator: VueFormGenerator.validators.string.locale({
               fieldIsRequired: "Nhập tên đi",
-              textTooSmall: "Tên phải ít nhất {0}/{1} ký tự" 
+              textTooSmall: "Tên phải ít nhất {0}/{1} ký tự"
               // {0} là current character, {1} là min
             })
           },
@@ -92,9 +100,9 @@ export default {
               }
               return errors;
             },
-             onChanged: function(model) {
-               console.log(model.password);
-             }
+            onChanged: function(model) {
+              console.log(model.password);
+            }
           },
           {
             type: "input",
@@ -131,6 +139,49 @@ export default {
               "AngularJS",
               "ReactJS",
               "VueJS"
+            ]
+          },
+          {
+            type: "vueMultiSelect",
+            label: "Skills (vue-multiSelect field)",
+            model: "ingredient",
+            multi: true,
+            multiSelect: true,
+            required: true,
+            max: 3,
+            selectOptions: {
+              multiple: true,
+              searchable: true,
+              clearOnSelect: true,
+              hideSelected: true,
+              taggable: true,
+              trackBy: "uuid",
+              label: "name",
+              tagPlaceholder: "tagPlaceholder",
+              onNewTag(newTag, id, options, value) {
+                console.log("onNewTag", newTag, id, options, value);
+                options.push(newTag);
+                value.push(newTag);
+              },
+              // showPointer: true,
+              onSearch(searchQuery, id, options) {
+                console.log("onSearch", searchQuery, id, options);
+              }
+            },
+            values: [
+              {
+                uuid: "a11e3f4b-d4f1-45ed-87fc-4eabda4e667e",
+                name: "Cherimoya"
+              },
+              { uuid: "5ceb59c6-efe6-4c8a-a4bd-0ef621cd1e5d", name: "Pummelo" },
+              {
+                uuid: "39f05038-39ba-4cb9-8508-720806dcb20b",
+                name: "Jabuticaba"
+              },
+              {
+                uuid: "94adbe8d-f9db-481c-97c0-7198d5f3d810",
+                name: "Kiwano melon"
+              }
             ]
           },
           {

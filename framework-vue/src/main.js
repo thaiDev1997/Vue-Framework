@@ -12,6 +12,8 @@ import MyVueTab from './components/MyVueTab'
 import MyFullLoading from './components/MyFullLoading'
 import MyFormWizard from './components/MyFormWizard'
 
+Vue.component("multiselect", VueMultiselect.default); // All Component can use this component
+
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
