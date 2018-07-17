@@ -27,9 +27,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import VueFormGenerator from "vue-form-generator";
-// import VueMultiselect from "vue-multiselect"; 
-// Can not import VueMultiSelect by NPM, have to use import by external in index.html
+import VueMultiselect from "vue-multiselect"; 
+Vue.component("multiselect", VueMultiselect); // All Component can use this component
 
 export default {
   name: "MyFormGenerator",
